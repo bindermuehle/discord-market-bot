@@ -1,0 +1,22 @@
+services:
+  bot:
+    build: .
+    image: discord-market-bot:local
+    restart: unless-stopped
+    # DISCORD_TOKEN (required), DEV_GUILD_ID and RUST_LOG (optional). See .env.example.
+    env_file: .env
+    environment:
+      DATABASE_PATH: /data/market.db
+    volumes:
+      - data:/data
+    # Run exactly one instance: two would both handle every interaction and share one SQLite file.
+    deploy:
+      replicas: 1
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+        max-file: "3"
+
+volumes:
+  data:

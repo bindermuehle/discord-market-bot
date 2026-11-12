@@ -44,5 +44,5 @@ Fields:
 ## Tech
 - Rust, Discord slash commands / buttons / modals (e.g. poise + serenity)
 - SQLite
-- Runs on Ben's VPS — single binary + systemd unit
+- Runs on Ben's VPS — Docker Compose, image built on the box from the git checkout
 - Config via env: `DISCORD_TOKEN`, `DATABASE_PATH` (optional `DEV_GUILD_ID` for instant command registration while developing)
