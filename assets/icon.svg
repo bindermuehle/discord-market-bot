@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="40%" r="70%">
+      <stop offset="0" stop-color="#1d2b44"/>
+      <stop offset="1" stop-color="#0b1220"/>
+    </radialGradient>
+  </defs>
+  <rect width="512" height="512" fill="url(#bg)"/>
+
+  <!-- crate -->
+  <g stroke="#0b1220" stroke-width="6" stroke-linejoin="round">
+    <polygon points="256,128 376,197 256,266 136,197" fill="#f6b84b"/>
+    <polygon points="136,197 256,266 256,404 136,335" fill="#d98e1c"/>
+    <polygon points="256,266 376,197 376,335 256,404" fill="#b3720f"/>
+  </g>
+  <!-- straps -->
+  <g stroke="#7a4c08" stroke-width="10" stroke-linecap="round" fill="none" opacity="0.9">
+    <line x1="196" y1="232" x2="196" y2="370"/>
+    <line x1="316" y1="232" x2="316" y2="370"/>
+    <line x1="196" y1="232" x2="316" y2="162"/>
+  </g>
+
+  <!-- price tag -->
+  <g transform="rotate(-20 372 150)">
+    <path d="M318 112 h88 a12 12 0 0 1 12 12 v52 a12 12 0 0 1 -12 12 h-88 l-30 -38 z"
+          fill="#4fc3f7" stroke="#0b1220" stroke-width="6" stroke-linejoin="round"/>
+    <circle cx="316" cy="150" r="9" fill="#0b1220"/>
+    <line x1="340" y1="138" x2="398" y2="138" stroke="#0b1220" stroke-width="9" stroke-linecap="round"/>
+    <line x1="340" y1="162" x2="384" y2="162" stroke="#0b1220" stroke-width="9" stroke-linecap="round"/>
+  </g>
+</svg>
