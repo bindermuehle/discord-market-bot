@@ -1,0 +1,12 @@
+[package]
+name = "discord-market-bot"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+anyhow = "1.0.104"
+poise = "0.6"
+rusqlite = { version = "0.42.0", features = ["bundled"] }
+tokio = { version = "1", features = ["macros", "rt-multi-thread", "sync"] }
+tracing = "0.1.44"
+tracing-subscriber = { version = "0.3.23", features = ["env-filter"] }

@@ -1,0 +1,24 @@
+[Unit]
+Description=Discord market bot
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=marketbot
+Group=marketbot
+# Contains DISCORD_TOKEN=... (chmod 600, owned by root)
+EnvironmentFile=/etc/discord-market-bot.env
+Environment=DATABASE_PATH=/var/lib/discord-market-bot/market.db
+ExecStart=/usr/local/bin/discord-market-bot
+Restart=on-failure
+RestartSec=5
+StateDirectory=discord-market-bot
+
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
