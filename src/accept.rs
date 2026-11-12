@@ -138,7 +138,7 @@ pub async fn handle_component(
         SELECT_DELETE => {
             let Some(id) = selected_id(i) else { return Ok(()) };
             let text = match data.db.delete_own_order(guild_id.get(), id, me)? {
-                Some(o) => format!("Deleted `#{}` ({}).", o.id, o.item),
+                Some(o) => format!("Deleted `#{}` ({}).", o.id, board::escape_md(&o.item)),
                 None => format!("`#{id}` isn't one of your open orders anymore."),
             };
             i.create_response(
@@ -265,13 +265,13 @@ fn dm_embed(order: &Order, poster: Option<&User>, acceptor: &User, character: &s
     let mut e = CreateEmbed::new()
         .title(title)
         .field("Server", guild, true)
-        .field("Item", &order.item, false)
+        .field("Item", board::escape_md(&order.item), false)
         .field("Quantity", order.qty.to_string(), true);
     if let Some(p) = order.price {
         e = e.field("Total price", isk::format(p), true);
     }
     if let Some(note) = &order.note {
-        e = e.field("Note", note, false);
+        e = e.field("Note", board::escape_md(note), false);
     }
     e.field("Posted by", user_line(order.poster_id, poster), false)
         .field(role, user_line(acceptor.id.get(), Some(acceptor)), true)

@@ -182,7 +182,7 @@ pub async fn delete(
     let guild_id = guild(ctx)?;
     match ctx.data().db.delete_own_order(guild_id.get(), order, ctx.author().id.get())? {
         Some(o) => {
-            reply_ephemeral(ctx, format!("Deleted `#{}` ({}).", o.id, o.item)).await?;
+            reply_ephemeral(ctx, format!("Deleted `#{}` ({}).", o.id, board::escape_md(&o.item))).await?;
             board::refresh(ctx.http(), ctx.data(), guild_id).await;
             Ok(())
         }
