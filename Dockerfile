@@ -7,9 +7,11 @@ COPY src ./src
 # Cache mounts keep the registry and compiled dependencies between builds on the VPS,
 # so a code change doesn't recompile every crate. The binary is copied out of the
 # cached target dir because cache mounts are not part of the image.
+# The VPS (2 cores, 4 GB) also serves other apps: build at lowest priority with one job,
+# which leaves a core free and keeps peak memory down.
 RUN --mount=type=cache,target=/usr/local/cargo/registry,sharing=locked \
     --mount=type=cache,target=/app/target,sharing=locked \
-    cargo build --release --locked \
+    nice -n 19 cargo build --release --locked -j1 \
     && cp target/release/discord-market-bot /usr/local/bin/discord-market-bot
 
 FROM debian:bookworm-slim

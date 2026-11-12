@@ -12,6 +12,10 @@ services:
     # Run exactly one instance: two would both handle every interaction and share one SQLite file.
     deploy:
       replicas: 1
+    # The bot idles at a few tens of MB. Caps keep a bug from affecting the other services on the box.
+    mem_limit: 128m
+    cpus: 0.5
+    pids_limit: 64
     logging:
       driver: json-file
       options:
